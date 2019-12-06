@@ -9,7 +9,6 @@ const imagemin = require('gulp-imagemin');
 function html() {
   return src('./src/index.html')
     .pipe(dest('./dest'))
-    
 }
 
 function styles() {
@@ -24,7 +23,6 @@ function reimage() {
     .pipe(imagemin())
     .pipe(dest('./dest/images'))
 }
-
 
 function js() {
   return src([
@@ -49,5 +47,4 @@ function watching(cb) {
   cb()
 }
 
-//exports.js = js;
 exports.all = series(html, styles, js, reimage, watching)
