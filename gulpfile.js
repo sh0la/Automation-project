@@ -1,6 +1,6 @@
 const {src, dest} = require('gulp');
-
-
+const autoprefix = require('gulp-autoprefixer');
+const cleancss = require('gulp-clean-css');
 
 
 function html(cb) {
@@ -9,10 +9,16 @@ function html(cb) {
     cb()
 }
 
+function styles(cb) {
+  src('./src/css/**/*.css')
+    .pipe(autoprefix())
+    .pipe(cleancss())
+    .pipe(dest('./dest/css'))
+    cb()
+}
 
 
 
 
 
-
-exports.html = html;
+exports.styles = styles;
