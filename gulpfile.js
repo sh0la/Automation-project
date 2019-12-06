@@ -1,7 +1,10 @@
-const {src, dest} = require('gulp');
+const {src, dest, series} = require('gulp');
 const autoprefix = require('gulp-autoprefixer');
 const cleancss = require('gulp-clean-css');
-
+const babel = require('gulp-babel');
+const concatenate = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const imagemin = require('gulp-imagemin');
 
 function html(cb) {
   src('./src/index.html')
@@ -17,8 +20,14 @@ function styles(cb) {
     cb()
 }
 
+function reimage(cb) {
+  src('./src/images/**/*')
+  .pipe(imagemin())
+  .pipe(dest('./dest/images'))
+  cb()
+}
 
 
 
-
-exports.styles = styles;
+exports.reimage = reimage;
+exports.default = series(html, styles)
