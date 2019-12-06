@@ -38,6 +38,7 @@ function js() {
       ]
     }))
     .pipe(concatenate('main.js'))
+    .pipe(uglify())
     .pipe(dest('./dest/js'))
 }
 
