@@ -28,6 +28,18 @@ function reimage(cb) {
 }
 
 
+function js(cb) {
+  //src('./src/js/**/*.js')
 
-exports.reimage = reimage;
-exports.default = series(html, styles)
+  src([
+    './src/js/**/resources.js',
+    './src/js/**/app.js',
+    './src/js/**/engine.js'
+  ])
+    .pipe(concatenate('main.js'))
+    .pipe(dest('./dest/js'))
+    cb()
+}
+
+//exports.js = js;
+exports.default = series(html, styles, js)
