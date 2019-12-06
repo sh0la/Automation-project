@@ -12,7 +12,7 @@ class Sun {
 
 //This object tracks and monitors the enemy sprite's actions- direction, speed and also the player's lives left
 class Enemy {
-  static lives = 3;
+  //static lives = 3;
 
   constructor(x, y, direction, style) {
     this.x = x;
@@ -52,7 +52,7 @@ class Enemy {
 
 //It controls and tracks the player's movement and the current level of the player
 class Player {
-  static level = 1;
+  //static level = 1;
 
   constructor(x, y) {
     this.x = x;

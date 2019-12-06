@@ -28,12 +28,17 @@ function reimage() {
 
 function js() {
   return src([
-      './src/js/**/resources.js',
-      './src/js/**/app.js',
-      './src/js/**/engine.js'
-    ])
-      .pipe(concatenate('main.js'))
-      .pipe(dest('./dest/js'))
+    './src/js/**/resources.js',
+    './src/js/**/app.js',
+    './src/js/**/engine.js'
+  ])
+    .pipe(babel({
+      presets: [
+        ['@babel/preset-env']
+      ]
+    }))
+    .pipe(concatenate('main.js'))
+    .pipe(dest('./dest/js'))
 }
 
 function watching(cb) {
@@ -44,4 +49,4 @@ function watching(cb) {
 }
 
 //exports.js = js;
-exports.default = series(html, styles, js, reimage, watching)
+exports.all = series(html, styles, js, reimage, watching)
